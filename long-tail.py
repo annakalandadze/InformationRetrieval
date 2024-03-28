@@ -12,6 +12,8 @@ query_id_text = []
 
 with open(queries_path, mode='r', encoding='utf-8', newline='') as tsv_file:
     tsv_reader = csv.DictReader(tsv_file, delimiter='\t')
+    query_ids.append('121352')
+    query_texts.append('define extreme')
     for row in tsv_reader:
         query_id = row['121352']
         query_text = row['define extreme']
@@ -36,7 +38,7 @@ for (id, query) in query_id_text:
                 number_of_rare += 1
         else:
             number_of_rare += 1
-    if number_of_rare > len(re.split(r'[^a-zA-Z0-9]+', query))/3:
+    if number_of_rare > len(re.split(r'[^a-zA-Z0-9]+', query))/3 or len(re.split(r'[^a-zA-Z0-9]+', query)) > 20:
         print(query)
         long_tail_queries.append(id)
 
