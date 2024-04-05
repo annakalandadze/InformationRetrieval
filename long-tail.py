@@ -38,8 +38,11 @@ for (id, query) in query_id_text:
                 number_of_rare += 1
         else:
             number_of_rare += 1
-    if number_of_rare > len(re.split(r'[^a-zA-Z0-9]+', query))/3 or len(re.split(r'[^a-zA-Z0-9]+', query)) > 20:
-        print(query)
+    if number_of_rare > len(re.split(r'[^a-zA-Z0-9]+', query))/2.5 or len(re.split(r'[^a-zA-Z0-9]+', query)) > 40:
         long_tail_queries.append(id)
-
 print(len(long_tail_queries))
+with open('long_tail_queries.txt', 'w') as file:
+    for id in long_tail_queries:
+        file.write(str(id) + '\n')
+
+# print(long_tail_queries)
